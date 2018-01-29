@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.inter_of_vehicle.dao.ScoreDao">
+
+    <resultMap id="scoreMap" type="com.example.inter_of_vehicle.model.Score">
+        <id property="id" column="id" javaType="java.lang.Long" jdbcType="INTEGER"></id>
+        <result property="vname" column="vname" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="motorscore" column="motorscore" javaType="java.lang.Long" jdbcType="INTEGER"/>
+        <result property="radiatorscore" column="radiatorscore" javaType="java.lang.Long" jdbcType="INTEGER"/>
+        <result property="intakescore" column="intakescore" javaType="java.lang.Long" jdbcType="INTEGER"/>
+        <result property="absolutescore" column="absolutescore" javaType="java.lang.Long" jdbcType="INTEGER"/>
+        <result property="average" column="average" javaType="java.lang.Long" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="select" resultMap="scoreMap">
+        SELECT * FROM Score WHERE vid=#{vid}
+    </select>
+    <select id="selectByVname" resultMap="scoreMap">
+        SELECT * FROM Score WHERE vname=#{vname}
+    </select>
+    <insert id="insert">
+        INSERT INTO Score(vname,motorscore,radiatorscore,intakescore,absolutescore,
+        average) VALUES (#{vname},#{motorscore},#{radiatorscore},#{intakescore},
+        #{absolutescore},#{average})
+    </insert>
+    <delete id="delete">
+        DELETE FROM Score WHERE vname=#{vname}
+    </delete>
+
+</mapper>

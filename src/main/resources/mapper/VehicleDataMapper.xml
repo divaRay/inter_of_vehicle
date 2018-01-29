@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.inter_of_vehicle.dao.VehicleDataDao">
+
+    <resultMap id="DataMap" type="com.example.inter_of_vehicle.model.VehicleData">
+        <id property="id" column="id" javaType="java.lang.Long" jdbcType="INTEGER"></id>
+        <result property="vname" column="vname" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="motortemp" column="motortemp" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        <result property="motorspeed" column="motorspeed" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        <result property="motorload" column="motorload" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        <result property="radiator_temp" column="radiator_temp" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        <result property="absolute_pressure" column="absolute_pressure" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        <result property="intake_temp" column="intake_temp" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        <result property="intake_airflow" column="intake_airflow" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="select" resultMap="DataMap">
+        SELECT * FROM VehicleData WHERE vid=#{vid}
+    </select>
+    
+    <select id="selectByVname" resultMap="DataMap">
+        SELECT * FROM VehicleData WHERE vname=#{vname}
+    </select>
+    
+    <insert id="insert">
+        INSERT INTO VehicleData(vname,motortemp,motorspeed,motorload,radiator_temp,
+        absolute_pressure,intake_temp,intake_airflow) VALUES (#{vname},#{motortemp},
+        #{motorspeed},#{motorload},#{radiator_temp},#{absolute_pressure},
+        #{intake_temp},#{intake_airflow})
+    </insert>
+    
+ <!--   <update id="update">
+        UPDATE VehicleData SET
+        
+    </update>-->
+    <delete id="delete">
+       DELETE FROM VehicleData WHERE vname=#{vname}
+    </delete>
+
+</mapper>

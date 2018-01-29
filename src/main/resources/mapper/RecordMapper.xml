@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.inter_of_vehicle.dao.RecordDao">
+
+    <resultMap id="recordMap" type="com.example.inter_of_vehicle.model.Record">
+        <id property="id" column="id" javaType="java.lang.Long" jdbcType="INTEGER"></id>
+        <result property="vname" column="vname" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="distance" column="distance" javaType="java.lang.Double" jdbcType="DOUBLE"/>
+        <result property="duration" column="duration" javaType="java.lang.Double" jdbcType="DOUBLE"/>
+        <result property="site" column="site" javaType="java.lang.String" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="select" resultMap="recordMap">
+        SELECT * FROM Record WHERE vid=#{vid}
+    </select>
+    <select id="selectByVname" resultMap="recordMap">
+        SELECT * FROM Record WHERE vname=#{vname}
+    </select>
+    <insert id="insert">
+        INSERT INTO Record(vname,distance,duration,site) VALUES (#{vname},
+        #{distance},#{duration},#{site})
+    </insert>
+    <delete id="delete">
+        DELETE FROM Record WHERE vname=#{vname}
+    </delete>
+
+</mapper>

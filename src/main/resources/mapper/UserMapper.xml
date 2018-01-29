@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.inter_of_vehicle.dao.UserDao">
+
+    <resultMap id="userMap" type="com.example.inter_of_vehicle.model.User">
+        <id property="id" column="id" javaType="java.lang.Long" jdbcType="INTEGER"></id>
+        <result property="uname" column="uname" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="password" column="password" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="account" column="account" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="gender" column="gender" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="birth" column="birth" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+
+    <select id="select" resultMap="userMap">
+        SELECT * FROM User WHERE uid=#{uid}
+    </select>
+
+    <select id="selectByUname" parameterType="java.lang.String" resultMap="userMap">
+        SELECT * FROM User WHERE uname=#{uname}
+    </select>
+
+    <select id="verification" parameterType="com.example.inter_of_vehicle.model.User">
+        SELECT * FROM User WHERE uname=#{uname} and password=#{password}
+    </select>
+
+    <update id="update" parameterType="com.example.inter_of_vehicle.model.User">
+        UPDATE User SET uname=#{uname},account=#{account},password=#{password},
+        gender=#{gender},birth=#{birth} WHERE uid=#{uid}
+    </update>
+
+    <delete id="delete" parameterType="java.lang.String">
+        DELETE FROM User WHERE uname=#{uname}
+    </delete>
+
+</mapper>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.inter_of_vehicle.dao.WarningDao">
+
+    <resultMap id="warningMap" type="com.example.inter_of_vehicle.model.Warning">
+        <id property="id" column="id" javaType="java.lang.Long" jdbcType="INTEGER"></id>
+        <result property="vname" column="vname" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="wname" column="wname" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="type" column="type" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="frequency" column="frequency" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        <result property="total" column="total" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="select" resultMap="warningMap">
+        SELECT * FROM Warning WHERE vid=#{vid}
+    </select>
+    <select id="selectByVname" resultMap="warningMap">
+        SELECT * FROM Warning WHERE vname=#{vname}
+    </select>
+    <insert id="insert">
+        INSERT INTO Warning(vname,wname,type,total,frequency) VALUES (#{vname},
+        #{wname},#{type},#{total},#{frequency})
+    </insert>
+    <delete id="delete">
+        DELETE FROM Warning WHERE vname=#{vname}
+    </delete>
+
+</mapper>

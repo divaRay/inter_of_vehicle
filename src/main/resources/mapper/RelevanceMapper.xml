@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.inter_of_vehicle.dao.RelevanceDao">
+
+    <resultMap id="relevanceMap" type="com.example.inter_of_vehicle.model.Relevance">
+        <id property="id" column="id" javaType="java.lang.Long" jdbcType="INTEGER"></id>
+        <result property="vname" column="vname" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="equipment" column="equipment" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="total" column="total" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        <result property="binding" column="binding" javaType="java.lang.String" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="select" resultMap="relevanceMap">
+        SELECT * FROM Relevance WHERE vid=#{vid}
+    </select>
+    <select id="selectByVname" resultMap="relevanceMap">
+        SELECT * FROM Relevance WHERE vname=#{vname}
+    </select>
+    <insert id="insert">
+        INSERT INTO Relevance(vname,equipment,total,binding) VALUES (#{vname},
+        #{equipment},#{total},#{binding})
+    </insert>
+    <delete id="delete">
+        DELETE FROM Relevance WHERE vname=#{vname}
+    </delete>
+
+</mapper>

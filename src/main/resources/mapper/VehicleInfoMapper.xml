@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.inter_of_vehicle.dao.VehicleInfoDao">
+
+    <resultMap id="InfoMap" type="com.example.inter_of_vehicle.model.VehicleInfo">
+        <id property="id" column="id" javaType="java.lang.Long" jdbcType="INTEGER"></id>
+        <result property="vname" column="vname" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="brand" column="brand" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="vtype" column="type" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="motor_num" column="motor_num" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="other" column="other" javaType="java.lang.String" jdbcType="VARCHAR"/>
+
+    </resultMap>
+
+    <select id="select" resultMap="InfoMap">
+        SELECT * FROM VehicleInfo WHERE vid=#{vid}
+    </select>
+
+    <select id="selectByVname" resultMap="InfoMap">
+        SELECT * FROM VehicleInfo WHERE vname=#{vname}
+    </select>
+
+    <insert id="insert">
+        INSERT INTO VehicleInfo(vname,brand,vtype,motor_num,other) VALUES (#{vname},#{brand},
+        #{vtype},#{motor_num},#{other})
+    </insert>
+
+    <!--   <update id="update">
+           UPDATE VehicleData SET
+
+       </update>-->
+    <delete id="delete">
+        DELETE FROM VehicleInfo WHERE vname=#{vname}
+    </delete>
+
+</mapper>
